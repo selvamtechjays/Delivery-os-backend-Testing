@@ -17,12 +17,18 @@
     "format:check": "prettier --check \"src/**/*.ts\"",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "prepare": "husky",
+    "test:unit": "jest --selectProjects unit",
+    "test:int": "jest --selectProjects integration",
+    "test:contract": "jest --selectProjects unit --testPathPatterns contract",
+    "audit:high": "npm audit --audit-level=high"
   },
   "dependencies": {
     "dotenv": "^18.0.9",
     "express": "^5.3.0",
-    "mongoose": "^9.11.4"
+    "mongoose": "^9.11.4",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
@@ -34,7 +40,10 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "globals": "^17.14.0",
+    "husky": "^9.1.7",
     "jest": "^30.5.2",
+    "lint-staged": "^16.4.0",
+    "mongodb-memory-server": "^11.3.0",
     "prettier": "^3.9.10",
     "supertest": "^7.3.1",
     "ts-jest": "^29.4.15",
@@ -42,5 +51,11 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1"
   },
-  "main": "dist/server.js"
+  "main": "dist/server.js",
+  "lint-staged": {
+    "*.ts": [
+      "prettier --check",
+      "eslint --max-warnings 0"
+    ]
+  }
 }
