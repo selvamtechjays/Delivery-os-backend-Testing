@@ -29,7 +29,8 @@ and tests never connect to a database.
 | `npm run lint` | ESLint (typescript-eslint, type-checked) + Prettier rules, zero warnings |
 | `npm run format` / `format:check` | Prettier write / check |
 | `npm run typecheck` | `tsc --noEmit` (strict) |
-| `npm test` | Jest + supertest (`src/**/*.spec.ts`) |
+| `npm test` | Jest + supertest, all projects (see [TESTING.md](TESTING.md)) |
+| `npm run test:unit` / `test:int` / `test:contract` / `test:cov` | Unit, integration (in-memory MongoDB), contract, coverage gate. See [TESTING.md](TESTING.md) |
 
 ## Layout
 

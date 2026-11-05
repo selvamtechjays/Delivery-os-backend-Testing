@@ -1,8 +1,13 @@
 import express, { type Express } from 'express';
+import type { AppDeps } from './ports';
 import { healthRouter } from './routes/health';
 
-export function createApp(corsOrigins: string[] = []): Express {
+export function createApp(
+  corsOrigins: string[] = [],
+  deps: AppDeps = {},
+): Express {
   const app = express();
+  app.locals.deps = deps;
   app.use(express.json());
   app.use((req, res, next) => {
     const origin = req.headers.origin;
